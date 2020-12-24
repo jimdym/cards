@@ -1,0 +1,16 @@
+Before adding any code I want to review some initial record types and how they're formatted.
+
+The card file is a text file that consistes of text only lines organized into cards.
+
+Each card begins with a line containing a unique identifing number as follows:
+serial:=nnnnn
+where n is one or more digits
+the card consists of all the lines until the next serial:=nnnn is encountered.
+
+blank lines are ignored
+
+lines comprising a card can be one or more of each of the following:
+name:=some displayable text
+comment:=some displayable text
+
+
