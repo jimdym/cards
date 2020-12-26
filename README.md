@@ -15,4 +15,5 @@ starting requirements:
 
 20201224 - The first iteration just added a card to the end of the file with one name and one comment. This next series of changes will allow for finding the card (by serial number) corresponding to a name, then adding additional names and comments. The new modules will be called listMatches, addName, and addComment.
 
-20201226 - adding a program to display a card (all records associated with a serial).
+20201226 - adding a program to display a card (all records associated with a serial). It looks like the first name record added has no date. Not really a bug, but maybe I should add it. The way I use a card file, the first name is really what the card is about although it doesn't have to be that way - I certainly have ambiguous cars in my file box.
+
