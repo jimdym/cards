@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title></title>
+</head>
+<body>
+<h1>User Manual for Cards</h1>
+<p>
+I came up with a card file system some time ago and the documentation has been a miserable failure because it's usually not read. Cards in this case are intended to be like 3x5 cards only of unlimited (sort of) size. They're a bit structured and sometimes I add dates automatically to make things cleaner.
+</p>
+<h2>Some preliminary technical notes</h2>
+<ul>
+<li>You need to create the data base using a text editor or something. Even $ "echo "serial:=1">filename" where filename is the name of the file that will contain your cards.</li>
+<li>Cards are referenced by serials. This are digit string that only contain numerals.</li>
+<li>A card is all the records starting with a serial up to but not including the next serial</li>
+<li>Blank lines are ignored</li>
+<li>The database is a text file which you can edit with any text editor (although that should be tested first)</li>
+</ul>
+<h2>How To Do Things</h2>
+<p>
+The software is implemented more or less as independent modules that access a file (the data base). Right now, you manipulate the data base by running the individual programs. You must tell the programs the name of the file containing the database.
+</p>
+<h3>Add a Card (addCard)</h3>
+<pre>
+$ addCard filename cardname
+where:
+	addCard is the name of the program
+	filename is the name of the file containing the data base
+	cardname is the first name to be added to the card
+	
+
+</pre>
+<p>
+The program will prompt for the text of a comment to be part of the card then add the card to the end of the file.
+</p>
+<h3>Add a Comment (addComment)</h3>
+<pre>
+$ addComment filename tempfile serial
+where:
+	addComment is the name of the program
+	filename is the name of the file containing the data base
+	tempfile - a temporary file containing the updated database
+	serial - serial of the card the comment will be added to
+</pre>
+<p>The Comment with a prepended date stamp is added as the list line of the card, You should review the card in tempfile, archive the original file if you're insecure, then rename tempfile to become your data base.</p>
+
+<h3>Add a Name (addName)</h3>
+<pre>
+$ addName filename tempfile serial
+where:
+	addName is the name of the program
+	filename is the name of the file containing the data base
+	tempfile - a temporary file containing the updated database
+	serial - serial of the card the name will be added to
+</pre>
+<p>
+Works just like add comment but results in a name record
+</p>
+
+<h3>List Matches (listMatches)</h3>
+<pre>
+$ listMatches filename string
+where:
+	listMatches is the name of the program
+	filename is the name of the file containing the data base
+	string is just a collection of alpha numeric characters that all the name records will be examined for
+</pre>
+
+<p>
+For each serial, each name will be examined, if it contains string, the serial and the name will be printed. This is designed to allow you to fine the serial of a card you might want to do other things with such as add comments or names.
+</p>
+<h3>Display a Card (displayCard)</h3>
+<pre>
+$ displayCard filename serial
+where:
+	displayCard is the name of the program
+	filename is the name of the file containing the data base
+	serial is the card to be displayed
+</pre>
+<p>
+The card specified by serial is simply dumped so the user can examine it
+</p>
+
+<h2>Data File Overview</h2>
+<p>
+It's important to understand the basic structure of the data file even without details of the technical implementation. A card is uniquely identified by a serial number. There can be multiple names (as in a person can be called different things at different times) which are what I use to search for. There can be multiple comments which just say things about whatever the names are. A card starts with a record (line) containing serial:= and contains all the records until, but not including the next serial:=.
+</p>
+<p>
+Right now there are no requirements for serials to be contiguous or sequential (although they are by default), but they cannot contain periods or commas so a feature requiring sequential cards and then insertions of new cards will probably be a significant issue.
+</p>
+
+<h2>Where things are</h2>
+<ul>
+<li>Documentation and Notes: dev/Desktop/pgms/cards</li>
+<li>Source Code: dev/Desktop/pgms/cards/3x5</li>
+<li>Technical Documentation: dev/Desktop/pgms/cards</li>
+<li>Executable Programs: /usr/local/bin</li>
+</ul>
+<h2>Upcoming Changes</h2>
+<ul>
+<li>Prompt to create cardfile is it doesn't exist</li>
+<li>Fancy card printing</li>
+<li>Linking cards using names</li>
+<li>Eliminate tempfile from addComment and addName</li>
+</ul>
+</body>
+</html>
