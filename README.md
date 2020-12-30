@@ -19,4 +19,4 @@ starting requirements:
 
 20201226 - adding a userManual.html file. This should bring me current with the work I've already done and be a pretty functional, albeit barebones, system.
 
-20201229 - add tech manual and prettified card display almost certainly as a web page.
+20201229 - add tech manual and prettified card display almost certainly as a web page. modify addCard.c to create file if it DNE.
